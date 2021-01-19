@@ -1,0 +1,6 @@
+[ProxyConfig]
+path = '/'
+destination = 6000
+entrypoint = 8080
+
+
