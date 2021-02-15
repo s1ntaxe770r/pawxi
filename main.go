@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 
 	"github.com/fatih/color"
 )
@@ -24,6 +25,13 @@ func main() {
 
 	http.HandleFunc("/", handler(proxy))
 
+	serverport, isSet := os.LookupEnv("PROXY_PORT")
+
+	if isSet == true {
+		green := color.New(color.FgGreen).PrintFunc()
+		green("proxying on %s", serverport)
+		log.Fatal(http.ListenAndServe(":"+serverport, nil))
+	}
 	color.Green("proxying on 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
