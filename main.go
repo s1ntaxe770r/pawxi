@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+
+	"github.com/fatih/color"
 )
 
 func handle(err error) {
@@ -22,6 +24,7 @@ func main() {
 
 	http.HandleFunc("/", handler(proxy))
 
+	color.Green("proxying on 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
