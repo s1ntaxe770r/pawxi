@@ -26,7 +26,6 @@ func main() {
 	http.HandleFunc("/", handler(proxy))
 
 	serverport, isSet := os.LookupEnv("PROXY_PORT")
-
 	if isSet == true {
 		green := color.New(color.FgGreen).PrintFunc()
 		green("proxying on %s", serverport)
@@ -34,7 +33,6 @@ func main() {
 	}
 	color.Green("proxying on 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
-
 }
 
 func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
