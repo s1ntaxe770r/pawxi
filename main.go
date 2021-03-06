@@ -8,6 +8,7 @@ import (
 	"net/url"
 
 	"github.com/s1ntaxe770r/pawxi/proxy"
+	"github.com/s1ntaxe770r/pawxi/utils"
 )
 
 func handle(err error) {
@@ -19,6 +20,7 @@ func handle(err error) {
 func main() {
 	config := proxy.LoadConfig()
 	port := config.Entrypoint
+	server := utils.NewServer(nil, fmt.Sprintf(":%s", port))
 	target, err := url.Parse("http://localhost:6000")
 	handle(err)
 
@@ -27,7 +29,8 @@ func main() {
 	http.HandleFunc("/", handler(proxy))
 	fmt.Printf("path = %s", config.Path)
 	fmt.Printf("proxying on %s", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	server.ListenAndServe()
+
 }
 
 func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
