@@ -11,6 +11,7 @@ type Config struct {
 	Path        string
 	Destination string
 	Entrypoint  string
+	UseGzip     string
 }
 
 // NewConfig  Returns a pointer to a new config struct
@@ -27,12 +28,14 @@ func LoadConfig() *Config {
 	path := config.Get("proxy.path").(string)
 	destination := config.Get("proxy.destination").(string)
 	entrypoint := config.Get("proxy.entrypoint").(string)
+	usegzip := config.Get("proxy.entrypoint").(string)
 	// todo: validate data
 
 	parsedtoml := Config{
 		Path:        path,
 		Destination: destination,
 		Entrypoint:  entrypoint,
+		UseGzip:     usegzip,
 	}
 	return &parsedtoml
 
