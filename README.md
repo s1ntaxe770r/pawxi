@@ -25,7 +25,7 @@ entrypoint = 8080
 
 - [x] parse TOML config
 
-- [ ] compress request  
+- [x] compress request  
 
 - [ ] Add TLS 
 
