@@ -4,11 +4,11 @@ Pawxi is yet another reverse proxy desinged with simplicity in mind. Born out of
 
 ## Cool how does it works ? 
 
-Simply create a `config.toml` (yes pawxi avoids YAML) and pawxi will do the rest. 
+Simply create a `pawxi.toml` (yes pawxi avoids YAML) and pawxi will do the rest. 
 
 Sample config 
 ```TOML
-[ProxyConfig]
+[proxy]
 path = '/'
 destination = 6000
 entrypoint = 8080
@@ -17,18 +17,16 @@ entrypoint = 8080
 ## Stuff i'm working on 
 
 
-- [ ] implement basic request forwarding 
+- [x] implement basic request forwarding 
   
 - [ ] multi request forwarding 
 
 - [ ] move to environment vars 
 
-- [ ] parse TOML config
+- [x] parse TOML config
 
 - [ ] compress request  
 
 - [ ] Add TLS 
-
-- [ ] graceful shutdown 
 
 - [ ] service discovery 
