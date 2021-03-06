@@ -10,7 +10,7 @@ Sample config
 ```TOML
 [proxy]
 path = '/'
-destination = 6000
+destination = "http://localhost:6000"
 entrypoint = 8080
 ```
 
