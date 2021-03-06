@@ -15,6 +15,5 @@ func NewServer(servemux *http.ServeMux, port string) *http.Server {
 		Handler:      servemux,
 		Addr:         port,
 	}
-
 	return server
 }
