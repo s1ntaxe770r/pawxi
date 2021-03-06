@@ -18,9 +18,9 @@ func NewConfig() *Config {
 	return &Config{}
 }
 
-// LoadConfig reads config.toml and returns a struct of type Config
+// LoadConfig reads pawxi.toml and returns a struct of type Config
 func LoadConfig() *Config {
-	config, err := toml.LoadFile("config.toml")
+	config, err := toml.LoadFile("pawxi.toml")
 	if err != nil {
 		log.Panicf("could not load toml file %s", err.Error())
 	}
