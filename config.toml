@@ -1,6 +1,6 @@
-[ProxyConfig]
-path = '/'
-destination = 6000
-entrypoint = 8080
+[proxy]
+path = "/"
+destination = "6000"
+entrypoint = "8080"
 
 
