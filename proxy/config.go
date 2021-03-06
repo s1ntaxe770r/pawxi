@@ -1,29 +1,39 @@
 package proxy
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/pelletier/go-toml"
 )
 
 // Config : struct representation of a toml config
 type Config struct {
-	path        string
-	destination int
-	entrypoint  int
+	Path        string
+	Destination string
+	Entrypoint  string
 }
 
-// LoadConfig  reads a toml file and returns a Config struct
+// NewConfig  Returns a pointer to a new config struct
+func NewConfig() *Config {
+	return &Config{}
+}
+
+// LoadConfig reads config.toml and returns a struct of type Config
 func LoadConfig() *Config {
 	config, err := toml.LoadFile("config.toml")
 	if err != nil {
-		fmt.Println("could not load toml config")
+		log.Panicf("could not load toml file %s", err.Error())
 	}
+	path := config.Get("proxy.path").(string)
+	destination := config.Get("proxy.destination").(string)
+	entrypoint := config.Get("proxy.entrypoint").(string)
+	// todo: validate data
 
-	proxyconf := Config{
-		path:        config.Get("path").(string),
-		destination: config.Get("destination").(int),
-		entrypoint:  config.Get("entrypoint").(int),
+	parsedtoml := Config{
+		Path:        path,
+		Destination: destination,
+		Entrypoint:  entrypoint,
 	}
-	return &proxyconf
+	return &parsedtoml
+
 }
