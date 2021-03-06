@@ -7,6 +7,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 
+	"github.com/NYTimes/gziphandler"
 	"github.com/s1ntaxe770r/pawxi/proxy"
 	"github.com/s1ntaxe770r/pawxi/utils"
 )
@@ -20,20 +21,25 @@ func handle(err error) {
 func main() {
 	config := proxy.LoadConfig()
 	port := config.Entrypoint
+	usegzip := config.UseGzip
 	server := utils.NewServer(nil, fmt.Sprintf(":%s", port))
-	target, err := url.Parse("http://localhost:6000")
+
+	target, err := url.Parse(config.Destination)
 	handle(err)
 
 	proxy := httputil.NewSingleHostReverseProxy(target)
-
+	if usegzip == "true" {
+		zipped := gziphandler.GzipHandler(handler(proxy))
+		http.Handle(config.Path, zipped)
+		fmt.Printf("proxying on %s", port)
+		server.ListenAndServe()
+	}
 	http.HandleFunc("/", handler(proxy))
-	fmt.Printf("path = %s", config.Path)
-	fmt.Printf("proxying on %s", port)
 	server.ListenAndServe()
 
 }
 
-func handler(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
+func handler(p *httputil.ReverseProxy) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.URL)
 		p.ServeHTTP(w, r)
