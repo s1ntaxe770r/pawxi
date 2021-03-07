@@ -8,6 +8,7 @@ import (
 
 // Config : struct representation of a toml config
 type Config struct {
+	Domain      string
 	Path        string
 	Destination string
 	Entrypoint  string
