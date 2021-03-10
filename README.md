@@ -9,9 +9,15 @@ Simply create a `pawxi.toml` (yes pawxi avoids YAML) and pawxi will do the rest.
 Sample config 
 ```TOML
 [proxy]
-path = '/'
-destination = "http://localhost:6000"
-entrypoint = 8080
+domain = "local.dev"
+usegzip = "true"
+
+routes = [
+    {path="/",destination="http://localhost:6000/"},
+    {path="/home",destination="http://localhost:5000"},
+    {path="/app",destination="http://localhost:4000"},
+]
+
 ```
 
 
@@ -20,7 +26,7 @@ entrypoint = 8080
 
 - [x] implement basic request forwarding 
   
-- [ ] multi request forwarding 
+- [x] multi request forwarding 
 
 - [ ] move to environment vars 
 
