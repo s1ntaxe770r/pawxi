@@ -19,8 +19,8 @@ func main() {
 		}
 
 		fmt.Println(string(dump))
+		w.Write([]byte(`{"ping":"pong"}`))
 
-		fmt.Fprintf(w, "hi there")
 	})
 
 	log.Println("listening on 6000")
