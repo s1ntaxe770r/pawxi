@@ -1,6 +1,10 @@
 [proxy]
-path = "/"
-destination = "http://localhost:6000"
-entrypoint = "8080"
+domain = local.dev
+usegzip = true 
 
+routes = [
+    {path="/",destination="localhost:6000"}
+    {path="/home",destination="localhost:5000"}
+    {path="/app",destination="localhost:4000"}
+]
 
