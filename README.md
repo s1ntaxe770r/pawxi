@@ -28,7 +28,7 @@ routes = [
   
 - [x] multi request forwarding 
 
-- [ ] move to environment vars 
+- [ ] visualize config 
 
 - [x] parse TOML config
 
