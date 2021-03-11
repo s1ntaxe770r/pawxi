@@ -5,12 +5,13 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"path/filepath"
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/fsnotify/fsnotify"
 	"github.com/s1ntaxe770r/pawxi/proxy"
+	"github.com/s1ntaxe770r/pawxi/tls"
 	"github.com/s1ntaxe770r/pawxi/utils"
-
 	"github.com/spf13/viper"
 )
 
@@ -55,14 +56,23 @@ func main() {
 		// indiviually proxy each request
 		proxy := proxy.Tunnel(route, dest)
 		if usegzip != true {
-			r.HandleFunc(route.Path, func(w http.ResponseWriter, r *http.Request) {
+			go r.HandleFunc(route.Path, func(w http.ResponseWriter, r *http.Request) {
 				proxy.ServeHTTP(w, r)
 			})
 		} else {
 			zipped := gziphandler.GzipHandler(proxy)
-			r.Handle(route.Path, zipped)
+			go r.Handle(route.Path, zipped)
 		}
 	}
-	server.ListenAndServe()
+	tls.SetupDevCerts()
+	vendorPath := "./certs"
+	cert := filepath.Join(vendorPath, "devcerts", "cert.pem")
+	key := filepath.Join(vendorPath, "devcerts", "key.pem")
+	go func() {
+		if err := http.ListenAndServe(port, http.HandlerFunc(utils.RedirectTLS)); err != nil {
+			log.Fatalf("ListenAndServe error: %v", err)
+		}
+	}()
+	server.ListenAndServeTLS(cert, key)
 
 }
