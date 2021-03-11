@@ -3,8 +3,9 @@ module github.com/s1ntaxe770r/pawxi
 go 1.15
 
 require (
-	github.com/NYTimes/gziphandler v1.1.1 // indirect
-	github.com/pelletier/go-toml v1.8.1
+	github.com/NYTimes/gziphandler v1.1.1
+	github.com/fsnotify/fsnotify v1.4.7
+	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/spf13/viper v1.7.1
-	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
+	golang.org/x/sys v0.0.0-20191026070338-33540a1f6037 // indirect
 )
