@@ -78,7 +78,7 @@ func SetupDevCerts() {
 	template := x509.Certificate{
 		SerialNumber: serialNumber,
 		Subject: pkix.Name{
-			Organization: []string{"Ponzu Dev Server"},
+			Organization: []string{"Pawxi"},
 		},
 		NotBefore: notBefore,
 		NotAfter:  notAfter,
