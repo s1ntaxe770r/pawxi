@@ -7,6 +7,7 @@ import (
 	"net/url"
 
 	"github.com/NYTimes/gziphandler"
+	"github.com/fsnotify/fsnotify"
 	"github.com/s1ntaxe770r/pawxi/proxy"
 	"github.com/s1ntaxe770r/pawxi/utils"
 
@@ -32,7 +33,11 @@ func main() {
 	readerr := viper.ReadInConfig()
 	port := fmt.Sprintf(":%s", viper.GetString("proxy.binds"))
 	server := utils.NewServer(r, port)
+	viper.WatchConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("Config file changed:", e.Name)
 
+	})
 	if readerr != nil {
 		panic(fmt.Errorf("fatal error config file: %s", readerr))
 	}
