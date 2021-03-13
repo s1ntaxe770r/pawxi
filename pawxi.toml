@@ -1,7 +1,7 @@
 [proxy]
 domain = "local.dev"
 usegzip = "True"
-binds = "9090"
+binds = "8000"
 routes = [
     {path="/",destination="http://localhost:6000/"},
     {path="/home",destination="http://localhost:5000"},
