@@ -68,6 +68,7 @@ func main() {
 			router.Handle(route.Path, zipped)
 		}
 	}
+	utils.Vizualize(routes)
 	logrus.Info("proxy started on ", port)
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("ListenAndServe error: %v", err)
