@@ -8,6 +8,7 @@ import (
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/briandowns/spinner"
+	"github.com/fatih/color"
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/mux"
 	"github.com/s1ntaxe770r/pawxi/proxy"
@@ -59,7 +60,7 @@ func main() {
 		// indiviually proxy each request
 		proxy := proxy.Tunnel(route)
 		if usegzip != true {
-			router.HandleFunc(route.Path, func(w http.ResponseWriter, r *http.Request) {
+			go router.HandleFunc(route.Path, func(w http.ResponseWriter, r *http.Request) {
 				proxy.ServeHTTP(w, r)
 
 			})
@@ -69,7 +70,7 @@ func main() {
 		}
 	}
 	utils.Vizualize(routes)
-	logrus.Info("proxy started on ", port)
+	logrus.Infof(color.HiGreenString("proxy started on %s"), port)
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("ListenAndServe error: %v", err)
 	}
