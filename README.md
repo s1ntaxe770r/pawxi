@@ -30,9 +30,20 @@ routes = [
 ```
 
 
+ usegzip  ->  enable or disable gzip 
+
+ Binds  -> what port should the proxy run on 
+
+routes -> paths you want to proxy to
+
+
 ## Demo 
 
 ![demo](demo.gif)
+
+
+
+
 
 
 
