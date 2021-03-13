@@ -9,14 +9,14 @@ Simply create a `pawxi.toml` (yes pawxi avoids YAML) and pawxi will do the rest.
 Sample config 
 ```TOML
 [proxy]
-domain = "local.dev"
-usegzip = "true"
-
+usegzip = "True"
+binds = "8000"
 routes = [
     {path="/",destination="http://localhost:6000/"},
     {path="/home",destination="http://localhost:5000"},
     {path="/app",destination="http://localhost:4000"},
 ]
+
 
 ```
 
