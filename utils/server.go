@@ -3,10 +3,12 @@ package utils
 import (
 	"net/http"
 	"time"
+
+	"github.com/gorilla/mux"
 )
 
 // NewServer returns a new http server with custom timeouts
-func NewServer(servemux *http.ServeMux, port string) *http.Server {
+func NewServer(servemux *mux.Router, port string) *http.Server {
 	// enforce proper timeouts on servver
 	server := &http.Server{
 		ReadTimeout:  5 * time.Second,
