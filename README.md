@@ -1,38 +1,39 @@
 ## Whats this ? 
 
-Pawxi is yet another reverse proxy desinged with simplicity in mind. Born out of a certain users frustration at the complexity of certain proxies. 
+Pawxi is yet another reverse proxy desinged with simplicity in mind. Born out of a certain users frustration at the complexity of  setting up certain proxies. 
 
-## Cool how does it work ? 
 
-Simply create a `pawxi.toml` (yes pawxi avoids YAML) and pawxi will do the rest. 
+## Features :sparkles:
 
-Sample config 
-```TOML
+ - GZIP compression :zap:
+
+ - Live Reload  🔃
+
+ - TLS termination ( coming soon! ) :fire:
+
+
+## Usage 
+
+Using the binary.
+
+Create a pawxi.toml file 
+
+```toml
 [proxy]
 usegzip = "True"
-binds = "8000"
+binds = "8080"
 routes = [
     {path="/",destination="http://localhost:6000/"},
     {path="/home",destination="http://localhost:5000"},
     {path="/app",destination="http://localhost:4000"},
 ]
-
-
 ```
 
 
-## Stuff i'm working on 
+## Demo 
+
+![demo](demo.gif)
 
 
-- [x] implement basic request forwarding 
-  
-- [x] multi request forwarding 
 
-- [ ] visualize config 
-
-- [x] parse TOML config
-
-- [x] compress request  
-
-- [ ] Add TLS 
 
