@@ -1,6 +1,6 @@
 ## Whats this ? 
 
-Pawxi is yet another reverse proxy desinged with simplicity in mind. Born out of a certain users frustration at the complexity of  setting up certain proxies. 
+Pawxi is yet another reverse proxy designed with simplicity in mind. Born out of a certain users frustration at the complexity of  setting up certain proxies. 
 
 
 ## Features :sparkles:
