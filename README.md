@@ -1,4 +1,4 @@
-                                  ![paw](https://img.icons8.com/cute-clipart/64/000000/dog-footprint.png)
+![paw](https://img.icons8.com/cute-clipart/64/000000/dog-footprint.png)
 
 
 ## Whats this ? 
