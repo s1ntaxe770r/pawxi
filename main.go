@@ -11,6 +11,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/mux"
+	"github.com/s1ntaxe770r/pawxi/metrics"
 	"github.com/s1ntaxe770r/pawxi/proxy"
 	"github.com/s1ntaxe770r/pawxi/utils"
 	"github.com/sirupsen/logrus"
@@ -36,6 +37,7 @@ func main() {
 	readerr := viper.ReadInConfig()
 	port := fmt.Sprintf(":%s", viper.GetString("proxy.binds"))
 	server := utils.NewServer(router, port)
+	router.Use(metrics.Count_Request)
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
 		logrus.Warn("Config file changed:", e.Name)
