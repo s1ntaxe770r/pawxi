@@ -1,6 +1,6 @@
 [proxy]
 usegzip = "True"
-binds = "8080"
+binds = "9080"
 routes = [
     {path="/",destination="http://localhost:6000/"},
     {path="/home",destination="http://localhost:5000"},
